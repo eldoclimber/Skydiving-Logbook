@@ -4,10 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <windows.h>
 #include "Menu.h"
-
-Menu obj1;
 
 // Definitions for ASCII values
 #define KEY_UP 72
@@ -19,39 +16,37 @@ Menu obj1;
 
 using namespace std;
 // Variables for menu control
-int mainMenuSelection, mainMenuInvalidOption;
+int isValidChoice = 1;
 int keepRunning = 1;
 
 //Class Definitions
-
-
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // For Text Color
+Menu menu;
 
 
 int main()
 {
     //Main program loop
     while (keepRunning >= 1) {
-        obj1.mainScreen();
+        menu.mainScreen(isValidChoice);
         //Check user entry for selection option
-        switch (mainMenuSelection) {
+        switch (menu.getMenuSelection()) {
 
         case 1:
             cout << "So difficult!\n";
-            mainMenuInvalidOption = 0; // Reset menu state
+            menu.setMenuValid();
             break;
 
         case 2:
             cout << "Beep!\n";
-            mainMenuInvalidOption = 0; // Reset menu state
+            menu.setMenuValid();
             break;
 
         case 3:
-            keepRunning = 0;
+            keepRunning = menu.exitApp();
             break;
 
         default:
-            mainMenuInvalidOption = 1;
+            isValidChoice = 0;
             break;
         }
     }

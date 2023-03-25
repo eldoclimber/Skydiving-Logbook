@@ -1,22 +1,21 @@
 #pragma once
 #include <stdlib.h>
 #include <iostream>
-#include "Skydiving Logbook.cpp"
-#include "Menu.cpp"
+#include <windows.h>
+//#include "Skydiving Logbook.cpp"
+//#include "Menu.cpp"
+
+using namespace std;
 
 class Menu
 {
 
 public:
-    
-    void mainScreen() {};
-   void viewLog() {};
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // For Text Color
+    int mainMenuInvalidOption = 1;
+    int mainMenuSelection;
 
-
-};
-
-
-    void Menu::mainScreen(void)
+    void mainScreen(int mainMenuInvalidOption)
     {
         system("cls");
         cout << R"(
@@ -35,7 +34,7 @@ public:
 
 )" << "\n";
         // Check to see if the user has input an invalid menu option, if so notify the user.
-        if (mainMenuInvalidOption == 1) {
+        if (mainMenuInvalidOption == 0) {
             SetConsoleTextAttribute(hConsole, 4); // 4 is the color red
             cout << "Please select a valid option" << endl;
             SetConsoleTextAttribute(hConsole, 7); // 7 is the color white
@@ -52,7 +51,7 @@ public:
         
     }
 
-    void Menu::viewLog(void) {
+    void viewLog() {
         system("cls");
         cout << R"(
 
@@ -62,5 +61,16 @@ Jump #      Date      Place        Aircraft        Altitude        Delay        
         
     }
 
+    int getMenuSelection() {
+        return mainMenuSelection;
+    }
+
+    void setMenuValid() {
+        mainMenuInvalidOption = 0;
+    }
+    int exitApp() {
+        return 0;
+    }
+};
 
 
