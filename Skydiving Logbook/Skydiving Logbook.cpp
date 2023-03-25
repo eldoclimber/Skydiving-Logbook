@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include "Menu.h"
+#include "LogbookFileControl.h"
 
 // Definitions for ASCII values
 #define KEY_UP 72
@@ -14,13 +15,13 @@
 #define KEY_ENTER 13
 #define KEY_ESCAPE 27
 
-using namespace std;
 // Variables for menu control
 int isValidChoice = 1;
 int keepRunning = 1;
 
 //Class Definitions
-Menu menu;
+Menu menu;                      // View Controller
+LogbookFileControl book;        // File Controller
 
 
 int main()
@@ -32,13 +33,13 @@ int main()
         switch (menu.getMenuSelection()) {
 
         case 1:
-            cout << "So difficult!\n";
-            menu.setMenuValid();
+            std::cout << "So difficult!\n";
+            isValidChoice = menu.setMenuValid();
             break;
 
         case 2:
-            cout << "Beep!\n";
-            menu.setMenuValid();
+            std::cout << "Beep!\n";
+            isValidChoice = menu.setMenuValid();
             break;
 
         case 3:
