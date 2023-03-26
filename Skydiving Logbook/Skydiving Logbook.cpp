@@ -7,13 +7,8 @@
 #include "Menu.h"
 #include "LogbookFileControl.h"
 
-// Definitions for ASCII values
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-#define KEY_ENTER 13
-#define KEY_ESCAPE 27
+
+
 
 // Variables for menu control
 int isValidChoice = 1;
@@ -26,26 +21,44 @@ LogbookFileControl book;        // File Controller
 
 int main()
 {
+    
     //Main program loop
     while (keepRunning >= 1) {
         menu.mainScreen(isValidChoice);
         //Check user entry for selection option
         switch (menu.getMenuSelection()) {
 
-        case 1:
-            std::cout << "So difficult!\n";
-            isValidChoice = menu.setMenuValid();
+        case 1:            
+            isValidChoice = menu.setMenuValid();    //Reset notification line
+            book.printToFile();                     //Prints information to logbook for view testing
+            book.pathGet();                         //Open logbook file. Function was intended to get user's "My Documents" folder. Decided to keep logbook at program location
+            
+            //Check if logbook.txt is created, if not then create a new file
+            if (book.isFileOpen()) {
+                menu.viewLog();
+            }
+
+            else {
+                book.createFile();
+                menu.noPreviousLog();               
+            }
             break;
 
+
+            //TODO: Bring user to data entry part
         case 2:
             std::cout << "Beep!\n";
             isValidChoice = menu.setMenuValid();
             break;
 
+
+            // Exit appilcation
         case 3:
             keepRunning = menu.exitApp();
             break;
 
+
+            // Choice isn't valid, set variable for text notification to user
         default:
             isValidChoice = 0;
             break;

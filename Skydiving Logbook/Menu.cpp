@@ -1,6 +1,11 @@
 #include "Menu.h"
+#include <iomanip>
+#include "LogbookFileControl.h"
+#include <string>
 
 using namespace std;
+
+// Displays initial main menu
 void Menu::mainScreen(int mainMenuInvalidOption)
 {
 
@@ -38,24 +43,49 @@ void Menu::mainScreen(int mainMenuInvalidOption)
 
 }
 
-void Menu::viewLog() {
+void Menu::viewLog()
+{
+    LogbookFileControl obj1;
+    int i;
+    int j = 0;
+
+    // Clear screen, write each data type and corresponding part from the logbook file
     system("cls");
-    cout << R"(
-
- *********************************************************************************************
-Jump #      Date      Place        Aircraft        Altitude        Delay        Total Freefall
-)";
-
+    for (string i : menuOptions)
+    {
+        
+        obj1.readFile(j);
+        cout << setw(15) << right << i << ":  " << left << obj1.fileRead[j] << "\n";
+        j++;
+    }
+    // Wait for user input and return to main menu.
+    // TODO: keep user on this screen until they leave
+    _getch();
 }
 
-int Menu::getMenuSelection() {
+// Returns menu selection
+int Menu::getMenuSelection() 
+{
     return mainMenuSelection;
 }
 
-int Menu::setMenuValid() {
+//Provides user notification for invalid menu entry.
+int Menu::setMenuValid() 
+{
     mainMenuInvalidOption = 1;
     return mainMenuInvalidOption;
 }
-int Menu::exitApp() {
+// Exit app
+int Menu::exitApp() 
+{
     return 0;
+}
+
+// Checks if user has a previous logbook.txt document in the project folder.
+void Menu::noPreviousLog()
+{
+    system("cls");
+    cout << "No previous logbook has been detected. A new logbook has been created.\n\nPress any key to continue . . .";
+    _getch();
+    viewLog();
 }
