@@ -30,24 +30,33 @@ void LogbookFileControl::createFile()
 }
 
 // Opens logbook file and write. Not working as intended at the moment.
-string LogbookFileControl::readFile(int i)
+// Number 6a - This function is part of the file I/O requirement. It reads text from the logbook file
+string LogbookFileControl::readFile()
 {
 	string fileLine;
+	int k = 0;
 	logbook.open(filename, ios::in);
 
-	if (logbook.is_open() && i<11)
+	if (logbook.is_open())
 	{
-		getline(logbook, fileLine);
-		fileRead[i] = fileLine;
+		while (getline(logbook, fileLine))
+		{
+			fileRead[k] = fileLine;
+			k++;
+		}
 	}
 	else
 	{
 		cout << "Error no file open";
+		printToFile();                     //Prints information to logbook for view testing
+		cout << "A default logbook has been created for you in the project folder. Please select the menu option again to see the default values";
 	}
+	logbook.close();
 	return fileLine;
 }
 
 // Will write data to the logbook database, for now it just creates a basic logbook entry for testing
+// Number 6b - This function is part of the file I/O requirement. It writes to the logbook text file. It current uses a generated selection of text for testing purposes.
 void LogbookFileControl::printToFile()
 {
 	logbook.open(filename);

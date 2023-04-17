@@ -23,6 +23,8 @@ int main()
 {
     
     //Main program loop
+    //Number 7 - This is the main control loop. There are whiles, fors, ifs, and a switch case used in the main() function
+    //Number 9 - This seection of code encompasses the Control portion of the requirements. It uses a switch case to decide the program path and detects for invalid entries.
     while (keepRunning >= 1) {
         menu.mainScreen(isValidChoice);
         //Check user entry for selection option

@@ -10,6 +10,8 @@ class LogbookFileControl
 {
 public:
 
+	//Number 4 - Variables - There are more variables created in other parts of the program. But this is one area in which I am using them
+	//Number 5 - The array fileRead[] is used to capture all of the logbook entries for the program.
 	fstream logbook;
 	string filename = "logbook.txt";
 	string fileRead[11];					// Array initialization for reading from logbook database file
@@ -20,7 +22,7 @@ public:
 	void pathGet();
 	bool isFileOpen();
 	void createFile();
-	string readFile(int i);
+	string readFile();
 	void printToFile();
 
 };

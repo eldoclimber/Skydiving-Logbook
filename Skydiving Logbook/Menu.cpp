@@ -26,15 +26,15 @@ void Menu::mainScreen(int mainMenuInvalidOption)
 
 )" << "\n";
     // Check to see if the user has input an invalid menu option, if so notify the user.
+    //Number 3 - Inputs and Outputs. There will be a more detailed input section that is being built
+    //Number 8 - This is part of the user interaction. There will be a larger section on this built later
     if (mainMenuInvalidOption == 0) {
         SetConsoleTextAttribute(hConsole, 4); // 4 is the color red
         cout << "Please select a valid option" << endl;
         SetConsoleTextAttribute(hConsole, 7); // 7 is the color white
-
     }
     else {
         cout << "\n";
-
     }
     cout << "1 - View Logbook Entries\n2 - Add Log Entry\n3 - Exit\n";
     cout << "Please type a number and press enter: ";
@@ -46,7 +46,7 @@ void Menu::mainScreen(int mainMenuInvalidOption)
 void Menu::viewLog()
 {
     LogbookFileControl obj1;
-    int i;
+    //int i;
     int j = 0;
 
     // Clear screen, write each data type and corresponding part from the logbook file
@@ -54,10 +54,12 @@ void Menu::viewLog()
     for (string i : menuOptions)
     {
         
-        obj1.readFile(j);
+        obj1.readFile();
         cout << setw(15) << right << i << ":  " << left << obj1.fileRead[j] << "\n";
         j++;
+        
     }
+
     // Wait for user input and return to main menu.
     // TODO: keep user on this screen until they leave
     _getch();
