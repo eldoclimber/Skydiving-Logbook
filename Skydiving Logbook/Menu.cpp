@@ -36,7 +36,7 @@ void Menu::mainScreen(int mainMenuInvalidOption)
     else {
         cout << "\n";
     }
-    cout << "1 - View Logbook Entries\n2 - Add Log Entry\n3 - Exit\n";
+    cout << "1 - View Logbook Entries\n2 - Add Log Entry\n3 - Exit\n4 - Delete data in logbook\n5 - Print Test Data to file\n\n";
     cout << "Please type a number of the menu entry and press enter: ";
     cin >> mainMenuSelection;
 
@@ -116,5 +116,5 @@ void Menu::recordLog()
 
     cout << "Please follow the prompts to enter a logbook entry: \n";
     obj1.getUserInput(obj1.prompts, obj1.variables);
-
+    obj1.writeToFile(obj1.prompts, obj1.variables, obj1.filename);
 }

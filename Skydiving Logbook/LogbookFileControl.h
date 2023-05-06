@@ -43,6 +43,8 @@ public:
 	void getUserInput(string prompts[], string variables[]);
 	void writeToFile(string prompts[], string variables[], const string filename);
 
+	void deleteData();
+
 
 };
 
