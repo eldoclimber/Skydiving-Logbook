@@ -22,6 +22,10 @@ public:
 	void createFile();
 	string readFile(int i);
 	void printToFile();
+	void closeFile();
+	void getUserInput(string prompts[], string variables[]);
+	void writeToFile(string prompts[], string variables[], const string filename);
+
 
 };
 

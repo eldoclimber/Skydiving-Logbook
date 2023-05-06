@@ -51,16 +51,26 @@ void Menu::viewLog()
 
     // Clear screen, write each data type and corresponding part from the logbook file
     system("cls");
+
+    
+    obj1.readFile();
+    // For each member in menu)option its prints the prompt value along with the data in the file.
     for (string i : menuOptions)
     {
         
-        obj1.readFile(j);
+ 
         cout << setw(15) << right << i << ":  " << left << obj1.fileRead[j] << "\n";
         j++;
     }
     // Wait for user input and return to main menu.
     // TODO: keep user on this screen until they leave
     _getch();
+}
+
+    }
+
+    obj1.closeFile();
+    
 }
 
 // Returns menu selection
@@ -88,4 +98,18 @@ void Menu::noPreviousLog()
     cout << "No previous logbook has been detected. A new logbook has been created.\n\nPress any key to continue . . .";
     _getch();
     viewLog();
+}
+
+void Menu::recordLog()
+{
+    // Copy standard cout formatting and clear screen
+    ios init(NULL);
+    init.copyfmt(cout);
+    system("cls");
+    LogbookFileControl obj1;
+
+    cout << "Please follow the prompts to enter a logbook entry: \n";
+    obj1.getUserInput(obj1.prompts, obj1.variables);
+    obj1.writeToFile(obj1.prompts, obj1.variables, obj1.filename);
+
 }

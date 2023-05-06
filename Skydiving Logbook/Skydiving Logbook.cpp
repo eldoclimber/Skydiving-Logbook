@@ -1,3 +1,43 @@
+/*
+
+This is the student and assignment information header block.
+
+Eliot Augusto
+S01604182
+May 6, 2023
+Professor Hemmes
+CSC 1060
+
+Assignment Information:
+This program is a capstone project designed to incorporate the following concepts into an application:
+
+    Algorithms
+    UML diagrams
+    Inputs and Output (I/O)
+    Variables
+    Arrays
+    File I/O
+    Iteration (loops)
+    Interaction 
+    Control
+
+This program incorporates those ideas by interacting with the user to get their input through a menu screen, and the log entry part of the program. The program then inputs the data into a text file, reads the
+text file, and then displays the information read from the txt file onto the screen. Arrays are used to encapsulate string prompts to the user, and by containing the data that is input and read into the file.
+Control is obtain through switch cases that use various loops to control data input and output.
+
+*Notes*
+There were several features that I wanted to add to this program, but I think I would have to approach it differently from the beginning to get the features that I want. As it stands the program compiles, runs and meets
+all the requirements for the project rubric. I wanted to add the ability to cycle through logbook files, edit and delete entries. This was a bit more work than I anticipated and I expect that I would need a bit more
+knowledge around file and database structure. I attempted these functions, but the more I added the more other functionality broke. I spent most of the remaining week unbreaking the project.
+
+TODO:
+* Modify the rile read function to accept parameters to return different outputs based on which 10 lines of data the user wants to see
+* Modify the file structure to allow for easy parsing of the data file
+* Add a delete function that only deletes that specific logbook entry
+* Add an edit function that only modifies the specific logbook entry
+
+*/
+
 // Skydiving Logbook.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
