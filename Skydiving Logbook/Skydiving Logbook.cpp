@@ -32,8 +32,8 @@ int main()
 
         case 1:            
             isValidChoice = menu.setMenuValid();    //Reset notification line
-            book.printToFile();                     //Prints information to logbook for view testing
-            book.pathGet();                         //Open logbook file. Function was intended to get user's "My Documents" folder. Decided to keep logbook at program location
+            //book.printToFile();                     //Prints information to logbook for view testing
+            book.pathGet();                         //Open logbook file
             
             //Check if logbook.txt is created, if not then create a new file
             if (book.isFileOpen()) {
@@ -49,8 +49,8 @@ int main()
 
             //TODO: Bring user to data entry part
         case 2:
-            std::cout << "Beep!\n";
             isValidChoice = menu.setMenuValid();
+            menu.recordLog();
             break;
 
 

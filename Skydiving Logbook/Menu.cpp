@@ -37,7 +37,7 @@ void Menu::mainScreen(int mainMenuInvalidOption)
         cout << "\n";
     }
     cout << "1 - View Logbook Entries\n2 - Add Log Entry\n3 - Exit\n";
-    cout << "Please type a number and press enter: ";
+    cout << "Please type a number of the menu entry and press enter: ";
     cin >> mainMenuSelection;
 
 
@@ -49,20 +49,34 @@ void Menu::viewLog()
     //int i;
     int j = 0;
 
+    // Copying standard cout format
+    ios init(NULL);
+    init.copyfmt(cout);
+
     // Clear screen, write each data type and corresponding part from the logbook file
     system("cls");
+
+    
+
     for (string i : menuOptions)
     {
         
         obj1.readFile();
         cout << setw(15) << right << i << ":  " << left << obj1.fileRead[j] << "\n";
         j++;
-        
+        //Checks to see if the array has finished outputing file information
+        // Wait for user input and return to main menu.
+        if (j == 10)
+        {
+            cout.copyfmt(init);     // Returning cout format to standard
+            cout << "\n\n\nPress any key to return to the main menu" << endl;
+            _getch();
+        }
+
     }
 
-    // Wait for user input and return to main menu.
-    // TODO: keep user on this screen until they leave
-    _getch();
+    
+    
 }
 
 // Returns menu selection
@@ -90,4 +104,17 @@ void Menu::noPreviousLog()
     cout << "No previous logbook has been detected. A new logbook has been created.\n\nPress any key to continue . . .";
     _getch();
     viewLog();
+}
+
+void Menu::recordLog()
+{
+    // Copy standard cout formatting and clear screen
+    ios init(NULL);
+    init.copyfmt(cout);
+    system("cls");
+    LogbookFileControl obj1;
+
+    cout << "Please follow the prompts to enter a logbook entry: \n";
+    obj1.getUserInput(obj1.prompts, obj1.variables);
+
 }
