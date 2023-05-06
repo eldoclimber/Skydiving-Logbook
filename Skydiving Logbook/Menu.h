@@ -27,6 +27,7 @@ public:
     int mainMenuInvalidOption = 1;
     int mainMenuSelection = 0;
     string menuOptions[10] = { "Jump #", "Date", "Place", "Aircraft", "Altitude", "Delay", "Total Freefall", "Equipment", "Maneuver", "Description" };
+    
 
     // Class declarations
     void mainScreen(int mainMenuInvalidOption);
@@ -35,4 +36,5 @@ public:
     int setMenuValid();
     int exitApp();
     void noPreviousLog();
+    void recordLog();
 };

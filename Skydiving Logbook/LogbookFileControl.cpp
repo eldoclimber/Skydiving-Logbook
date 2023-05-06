@@ -5,6 +5,8 @@
 
 using namespace std;
 
+const int numVariables = 10; // Logbook entry count
+
 // Function intended to get file location, for now it creates the logbook.txt.
 void LogbookFileControl::pathGet()
 {
@@ -29,28 +31,76 @@ void LogbookFileControl::createFile()
 
 }
 
-// Opens logbook file and write. Not working as intended at the moment.
-string LogbookFileControl::readFile(int i)
+// Opens logbook file and write.
+// Number 6a - This function is part of the file I/O requirement. It reads text from the logbook file
+string LogbookFileControl::readFile()
 {
 	string fileLine;
+	int k = 0;
 	logbook.open(filename, ios::in);
 
-	if (logbook.is_open() && i<11)
+	//Check to see if the program can open a file. If not, lets the user know and creates a file
+	if (logbook.is_open())
 	{
-		getline(logbook, fileLine);
-		fileRead[i] = fileLine;
+		while (getline(logbook, fileLine))
+		{
+			fileRead[k] = fileLine;
+			k++;
+		}
 	}
 	else
 	{
 		cout << "Error no file open";
+		printToFile();                     //Prints information to logbook for view testing
+		cout << "A default logbook has been created for you in the project folder. Please select the menu option again to see the default values";
 	}
+	logbook.close();
 	return fileLine;
 }
 
-// Will write data to the logbook database, for now it just creates a basic logbook entry for testing
+// Creates a basic logbook entry for testing
+// Number 6b - This function is part of the file I/O requirement. It writes to the logbook text file. It current uses a generated selection of text for testing purposes.
 void LogbookFileControl::printToFile()
 {
+	logbook.close();
+	cin.clear();
+	cin.ignore();
+	logbook.clear(istream::failbit);
 	logbook.open(filename);
 	logbook << filePrint;
 	logbook.close();
+}
+
+
+// Number 6c - This function is gets user input and inputs the values entered into an array.
+// Function to get user input using the provided prompts and store the input in the variables array
+void LogbookFileControl::getUserInput(string prompts[], string variables[]) {
+	cin.ignore();
+	for (int i = 0; i < numVariables; ++i) {
+		cout << prompts[i];
+		getline(cin, variables[i]);
+	}
+}
+
+// Function to write the prompts and variables to a file with the specified filename
+void LogbookFileControl::writeToFile(string prompts[], string variables[], string filename) {
+	ofstream outputFile(filename, ios::app);
+	if (outputFile.is_open()) {
+		for (int i = 0; i < numVariables; ++i) {
+			outputFile << variables[i] << endl;
+		}
+		outputFile.close();
+	}
+	else {
+		cerr << "Unable to open file." << endl;
+	}
+}
+
+//Delete all info in logbook
+void LogbookFileControl::deleteData()
+{
+	ofstream file;
+	file.open(filename, ofstream::trunc);
+	file.close();
+
 }
